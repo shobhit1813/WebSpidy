@@ -6,7 +6,7 @@ public class Crawler{
     ValidateDetails valid_check;
     Doc my_doc;
     Hashable h;
-    hash[] my_hash;
+    Hash[] my_hash;
 
     public Crawler(){
         valid_check = new Validate();
@@ -27,11 +27,11 @@ public class Crawler{
                 String html = new String();
                 html = my_doc.parseHtml(url);
                 file_no = my_doc.writeIntoFile(html, dir,file_no);
-                my_hash = h.set(my_hash, my_doc.addInternalURLToArray(html, url));
+                my_hash = h.setLinkInArray(my_hash, my_doc.addInternalURLToArray(html, url));
                 my_hash[0].print();
 
                 while(flag != 1){
-                    url = new String(hash.getNextURL(my_hash,depth));
+                    url = new String(h.getNextURL(my_hash,depth));
                     System.out.println(url);
                     if(url.equals("-1"))
                         return;
