@@ -10,14 +10,14 @@ class ValidateDetails{
             HttpURLConnection conn = (HttpURLConnection)objurl.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
-            String url_type = new String(getContentType());
-            System.out.prinltn("Content Type of "+url+": "+url_type);
+            String url_type = new String(conn.getContentType());
+            System.out.println("Content Type of "+url+": "+url_type);
             if(url_type == "text/html")
                 return 1;
             
         }
         catch(MalformedURLException e){
-            System.out.prinltn(e.toString());
+            System.out.println(e.toString());
         }
         catch(ProtocolException e){
             System.out.println(e.toString());

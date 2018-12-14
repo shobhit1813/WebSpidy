@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.Scanner;
+
 
 public class Crawler{
 
@@ -9,16 +11,16 @@ public class Crawler{
     Hash[] my_hash;
 
     public Crawler(){
-        valid_check = new Validate();
+        valid_check = new ValidateDetails();
         my_doc = new Doc();
         h = new Hashable();
-        my_hash = new hash[100];
+        my_hash = new Hash[100];
 
         for(int i = 0; i < my_hash.length; i++){
-            my_hash[i] = new hash();
+            my_hash[i] = new Hash();
         }
     }
-    public void executeCrawler(String url,String dir, int depth){
+    public void executeCrawler(String url,String dir, int depth) throws IOException{
         int flag = 0;
         flag = valid_check.checkURL(url) + valid_check.checkDirectory(dir) + valid_check.checkDepth(depth);
 
@@ -41,7 +43,7 @@ public class Crawler{
             }while(file_no <1000);
         }
     }
-    public static void main(String args[]){
+    public static void main(String args[]) throws IOException{
         
         Crawler cw = new Crawler();
         Scanner sc = new Scanner(System.in);

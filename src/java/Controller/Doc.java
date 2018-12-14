@@ -38,7 +38,7 @@ public class Doc{
     public String[] addInternalURLToArray(String str, String base_url){
         ArrayList<String> br = new ArrayList<>();
         br.add(base_url);
-        Validate v = new Validate();
+        ValidateDetails v = new ValidateDetails();
         int i;
         Document doc = Jsoup.parse(str);
         Elements links = doc.select("a[href]");

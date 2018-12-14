@@ -23,7 +23,7 @@ class Hash{
         Node n = new Node(url, depth, visit_status);
         if(start == null){
             start = n;
-            end = n;
+            tail = n;
         }
         else{
             n.next = start;
@@ -33,10 +33,10 @@ class Hash{
     }
 
     public void print(){
-        node ptr = start;
+        Node ptr = start;
         int i = 0;
         while(ptr != null){
-            System.out.println("Link no:"i+" depth = "+ptr.depth+" visited = "+ptr.isvisited+" url:"+ptr.url);
+            System.out.println("Link no:"+i+" depth = "+ptr.depth+" visited = "+ptr.isvisited+" url:"+ptr.url);
             ptr = ptr.next;
             i++;
         }
@@ -46,13 +46,13 @@ class Hash{
         if(start == null)
             return 0;
         Node ptr = start;
-        while(ptr != end)){
+        while(ptr != tail){
             if(ptr.url.equals(str)){
                 return 1;
             }
             ptr = ptr.next;
         }
-        if(end.url.equals(str))
+        if(tail.url.equals(str))
             return 1;
         return 0; 
     }
@@ -60,11 +60,35 @@ class Hash{
 public class Hashable{
     
     int depth = 0;
+    int i = 0, j = 0;
+    Hash[] link(Hash[] arr){
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i].tail != null){
+                for( j = i + 1; j < arr.length; j++){
+                    if(arr[j].start != null)
+                        break;  
+                }
+                arr[i].tail.next = arr[j].start;
+            }
+        }
+        return arr;
+    }
 
+    public String getNextURL(Hash []arr,int depth){
+        Node ptr = arr[0].start;
+        while(ptr != null){
+            if(ptr.isvisited == 0 && ptr.depth <= depth){
+                ptr.isvisited = 1;
+                return ptr.url;
+            }
+            ptr = ptr.next;
+        }
+        return "-1";
+    }
     public Hash[] setLinkInArray(Hash[] arr, String[] list){
-        int index = list[0].length % 100;
+        int index = list[0].length() % 100;
         if(arr[index].check(list[0]) == 0){
-            arr[index].insert(list[0], d, 1);
+            arr[index].insert(list[0], depth, 1);
         }
         for(int i = 0; i < list.length; i++){
             index = list[i].length() % 100;
@@ -74,8 +98,8 @@ public class Hashable{
         arr = link(arr);
         return arr;
     }
+} 
 
-    public
 
 
-}
+
