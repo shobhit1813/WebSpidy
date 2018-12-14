@@ -33,4 +33,11 @@ class ValidateDetails{
             return 1;
         return 0;
     }
+
+    public int checkDirectory(String dir){
+        File file = new File(dir);
+        if(file.exists() && file.canRead() && file.canWrite() && file.canExecute())
+            return 1;
+        return 0;
+    }
 }
