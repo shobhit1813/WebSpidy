@@ -34,4 +34,22 @@ public class Doc{
         }
         return file_no + 1;
     }
+
+    public String[] addInternalURLToArray(String str, String base_url){
+        ArrayList<String> br = new ArrayList<>();
+        br.add(base_url);
+        Validate v = new Validate();
+        int i;
+        Document doc = Jsoup.parse(str);
+        Elements links = doc.select("a[href]");
+        for(Element link:links){
+            String url = new String(link.attr("abs:href"));
+            if(url.length() > base_url.length()){
+                String uptoBaseUrl = url.substring(0,base_url.length());
+                if(uptoBaseUrl.contains(base_url) && !br.contains(url))
+                    br.add(url);
+            }
+        }
+        return br.toArray(new String[0]);
+    }
 }

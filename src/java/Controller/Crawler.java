@@ -27,7 +27,7 @@ public class Crawler{
                 String html = new String();
                 html = my_doc.parseHtml(url);
                 file_no = my_doc.writeIntoFile(html, dir,file_no);
-                my_hash = h.set(my_hash, my_doc.getInArray(html, url));
+                my_hash = h.set(my_hash, my_doc.addInternalURLToArray(html, url));
                 my_hash[0].print();
 
                 while(flag != 1){
