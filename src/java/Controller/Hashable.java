@@ -4,6 +4,12 @@ class Node{
     int depth;
     int isvisited;
     Node next;
+
+    Node(String url, int depth, int visit_status){
+        this.url = url;
+        this.depth = depth;
+        this.isvisited = visit_status;
+    }
 }
 
 class Hash{
@@ -13,7 +19,43 @@ class Hash{
         tail = null;
     }
 
-    public void insert()
+    public void insert(String url, int depth, int visit_status){
+        Node n = new Node(url, depth, visit_status);
+        if(start == null){
+            start = n;
+            end = n;
+        }
+        else{
+            n.next = start;
+            start = n;
+        }
+
+    }
+
+    public void print(){
+        node ptr = start;
+        int i = 0;
+        while(ptr != null){
+            System.out.println("Link no:"i+" depth = "+ptr.depth+" visited = "+ptr.isvisited+" url:"+ptr.url);
+            ptr = ptr.next;
+            i++;
+        }
+    }
+
+    public int check(String str){
+        if(start == null)
+            return 0;
+        Node ptr = start;
+        while(ptr != end)){
+            if(ptr.url.equals(str)){
+                return 1;
+            }
+            ptr = ptr.next;
+        }
+        if(end.url.equals(str))
+            return 1;
+        return 0; 
+    }
 }
 public class Hashable{
     
@@ -32,6 +74,8 @@ public class Hashable{
         arr = link(arr);
         return arr;
     }
+
+    public
 
 
 }
